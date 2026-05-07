@@ -2,7 +2,7 @@
 
 Code and figures behind **[Red Button, Blue Button](https://aesv.io/feed/red-button-blue-button)**.
 
-> A red button kills you. A blue button kills you only if fewer than half the world also pressed blue.
+> Red is safe. Blue saves everyone if more than half the world presses it — otherwise it kills the people who pressed it.
 
 The article is the thing to read. This repo holds the simulation it cites and the figures it embeds, so the numbers stay reproducible.
 
