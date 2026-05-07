@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>chart_logic — Trust threshold</title>
+<link rel="stylesheet" href="./shared.css">
+</head>
+<body>
+<main class="rb-chart" role="main">
+  <p class="back"><a href="./">← all charts</a> · <a href="https://aesv.io/feed/red-button-blue-button">read the article</a></p>
+
+  <h1>The trust threshold</h1>
+  <p class="lede">An agent presses blue when their trust <em>p</em> clears <code>λ / (a + λ)</code>. Slide the dial to set how much a stranger's life is worth to you, relative to your own. The bar shifts: the more you care, the less trust you need.</p>
+
+  <div class="rb-panel">
+    <svg viewBox="0 0 760 540" id="logic-svg" role="img" aria-label="Interactive trust threshold thermometer"></svg>
+  </div>
+
+  <div class="rb-controls">
+    <div class="rb-control" style="flex: 1 1 100%;">
+      <label for="aSlider">A STRANGER'S LIFE IS WORTH &nbsp;<span class="value" id="aValue">28%</span>&nbsp; OF YOURS</label>
+      <div class="row">
+        <span class="t-tick">0%</span>
+        <input id="aSlider" type="range" min="0" max="1" step="0.01" value="0.28">
+        <span class="t-tick">100%</span>
+      </div>
+      <p style="margin:6px 0 0;color:var(--rb-ink-mute);font-size:11px;letter-spacing:0.04em;">
+        <strong style="color:var(--rb-ink);">28%</strong> is the dictator-game average — the share of <em>money</em> people give to strangers · <strong style="color:var(--rb-ink);">100%</strong> means you'd literally die for them
+      </p>
+    </div>
+  </div>
+
+  <div class="rb-callout" id="verdict"></div>
+
+  <p style="margin:0;color:var(--rb-ink-mute);font-size:13px;line-height:1.55;">
+    <strong>Maximin</strong> stays on red regardless — its worst case is "you live." <strong>Minimax regret</strong> stays on red for any altruism below 1. The dictator-game number is the share of <em>money</em> people give to strangers, and is almost certainly an upper bound on what they'd weight a stranger's <em>life</em> at.
+  </p>
+</main>
+
+<script type="module">
+import { fmt2 } from "./shared.js";
+
+const LAMBDA = 2.25;
+
+const SVG_NS = "http://www.w3.org/2000/svg";
+const svg = document.getElementById("logic-svg");
+const el = (name, attrs = {}, parent = svg) => {
+  const node = document.createElementNS(SVG_NS, name);
+  for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, String(v));
+  parent.appendChild(node);
+  return node;
+};
+
+// Bar geometry
+const BAR_X0 = 60, BAR_X1 = 700;
+const BAR_Y0 = 170, BAR_Y1 = 260;
+const BAR_W = BAR_X1 - BAR_X0;
+const xAt = (p) => BAR_X0 + p * BAR_W;
+
+// --- Static layers (drawn once) ----------------------------------------
+
+// Hatch pattern for the gray zone
+const defs = el("defs");
+const pat = el("pattern", {
+  id: "rb-hatch", width: 8, height: 8,
+  patternUnits: "userSpaceOnUse", patternTransform: "rotate(45)",
+}, defs);
+el("rect", { width: 8, height: 8, fill: "#f4ecd8" }, pat);
+el("line", { x1: 0, y1: 0, x2: 0, y2: 8, stroke: "#c8924a", "stroke-width": 3 }, pat);
+
+// Headline — eyebrow restates the slider value in plain language so the
+// chart is self-contained without the slider in view.
+const eyebrow = el("text", {
+  x: BAR_X0, y: 50,
+  "font-size": 12, "font-weight": 700, "letter-spacing": "0.14em",
+  fill: "var(--rb-ink-mute)",
+});
+const headlineQuestion = el("text", {
+  x: BAR_X0, y: 90,
+  "font-size": 30, "font-weight": 700,
+  fill: "var(--rb-ink)", "letter-spacing": "-0.01em",
+});
+headlineQuestion.textContent = "How much trust does pressing blue need?";
+
+// Endpoint labels
+el("text", {
+  x: BAR_X0, y: BAR_Y0 - 12, "text-anchor": "start",
+  "font-size": 11, fill: "var(--rb-ink-mute)",
+  "font-family": "var(--rb-font-mono)",
+}).textContent = "0% trust";
+el("text", {
+  x: BAR_X1, y: BAR_Y0 - 12, "text-anchor": "end",
+  "font-size": 11, fill: "var(--rb-ink-mute)",
+  "font-family": "var(--rb-font-mono)",
+}).textContent = "100% trust";
+
+// Bar outer frame (drawn over the colored zones)
+const barFrame = el("rect", {
+  x: BAR_X0, y: BAR_Y0, width: BAR_W, height: BAR_Y1 - BAR_Y0,
+  fill: "none", stroke: "var(--rb-ink)", "stroke-width": 3,
+});
+
+// --- Country dots row (drawn once — positions don't depend on altruism) -
+
+const COUNTRIES = [
+  { name: "Colombia", trust: 0.05 },
+  { name: "USA",      trust: 0.37 },
+  { name: "Sweden",   trust: 0.63 },
+  { name: "Denmark",  trust: 0.74 },
+];
+const dotY = BAR_Y1 + 200;
+el("text", {
+  x: BAR_X0, y: dotY - 30,
+  "font-size": 12, "font-weight": 700, "letter-spacing": "0.12em",
+  fill: "var(--rb-ink-mute)",
+}).textContent = "WHERE COUNTRIES ACTUALLY SIT (WVS Wave 7)";
+
+const countryNodes = COUNTRIES.map(c => {
+  const x = xAt(c.trust);
+  const dot = el("circle", {
+    cx: x, cy: dotY, r: 7,
+    fill: "var(--rb-cream)", stroke: "var(--rb-ink)", "stroke-width": 2.5,
+  });
+  el("text", {
+    x: x, y: dotY + 24,
+    "text-anchor": "middle",
+    "font-size": 14, "font-weight": 700,
+    fill: "var(--rb-ink)",
+  }).textContent = c.name;
+  el("text", {
+    x: x, y: dotY + 40,
+    "text-anchor": "middle",
+    "font-size": 11, fill: "var(--rb-ink-mute)",
+    "font-family": "var(--rb-font-mono)",
+  }).textContent = `${Math.round(c.trust * 100)}% trust`;
+  // verdict tag (live-updated)
+  const tag = el("text", {
+    x: x, y: dotY - 18,
+    "text-anchor": "middle",
+    "font-size": 10, "font-weight": 700, "letter-spacing": "0.08em",
+  });
+  return { country: c, dot, tag };
+});
+
+// --- Dynamic layers (re-rendered on slider input) ----------------------
+
+// Zone rects
+const zoneRed   = el("rect", { y: BAR_Y0, height: BAR_Y1 - BAR_Y0,
+                               fill: "var(--rb-brick)", "fill-opacity": 0.55 });
+const zoneSplit = el("rect", { y: BAR_Y0, height: BAR_Y1 - BAR_Y0,
+                               fill: "url(#rb-hatch)" });
+const zoneBlue  = el("rect", { y: BAR_Y0, height: BAR_Y1 - BAR_Y0,
+                               fill: "var(--rb-lavender)", "fill-opacity": 0.55 });
+
+// Threshold ticks + numbers + sub-labels
+function makeTickGroup(color) {
+  const g = el("g");
+  const tick = el("line", {
+    y1: BAR_Y1, y2: BAR_Y1 + 22,
+    stroke: color, "stroke-width": 2.5,
+  }, g);
+  const num = el("text", {
+    y: BAR_Y1 + 54,
+    "text-anchor": "middle",
+    "font-size": 30, "font-weight": 700, fill: color,
+  }, g);
+  const sub = el("text", {
+    y: BAR_Y1 + 74,
+    "font-size": 11, "font-weight": 700, "letter-spacing": "0.08em", fill: color,
+  }, g);
+  return { tick, num, sub };
+}
+const euTick = makeTickGroup("var(--rb-ink)");
+const laTick = makeTickGroup("var(--rb-brick)");
+
+// Zone-name keys (PRESS RED / PRESS BLUE) — repositioned as bar shifts.
+function makeZoneKey(title, sub, anchor) {
+  const t = el("text", {
+    "text-anchor": anchor,
+    "font-size": 18, "font-weight": 700, "letter-spacing": "0.04em",
+    fill: "var(--rb-ink)",
+    y: BAR_Y1 + 110,
+  });
+  t.textContent = title;
+  const s = el("text", {
+    "text-anchor": anchor,
+    "font-size": 11, "letter-spacing": "0.06em",
+    fill: "var(--rb-ink-mute)", "font-style": "italic",
+    y: BAR_Y1 + 128,
+  });
+  s.textContent = sub;
+  return { t, s };
+}
+const redKey  = makeZoneKey("PRESS RED",  "every framework agrees", "middle");
+const blueKey = makeZoneKey("PRESS BLUE", "above the harder bar",   "end");
+
+// Reposition redKey (anchor middle) and blueKey (anchor end at BAR_X1).
+blueKey.t.setAttribute("x", BAR_X1);
+blueKey.s.setAttribute("x", BAR_X1);
+
+// --- Slider wiring -----------------------------------------------------
+
+const slider = document.getElementById("aSlider");
+const aValue = document.getElementById("aValue");
+const verdict = document.getElementById("verdict");
+
+function update(a) {
+  const tEU = 1 / (1 + a);
+  const tLA = LAMBDA / (a + LAMBDA);
+
+  // Zones — clamp tEU/tLA to [0, 1]
+  const xEU = xAt(Math.max(0, Math.min(1, tEU)));
+  const xLA = xAt(Math.max(0, Math.min(1, tLA)));
+
+  zoneRed.setAttribute("x", BAR_X0);
+  zoneRed.setAttribute("width", Math.max(0, xEU - BAR_X0));
+  zoneSplit.setAttribute("x", xEU);
+  zoneSplit.setAttribute("width", Math.max(0, xLA - xEU));
+  zoneBlue.setAttribute("x", xLA);
+  zoneBlue.setAttribute("width", Math.max(0, BAR_X1 - xLA));
+
+  // Threshold ticks
+  euTick.tick.setAttribute("x1", xEU);
+  euTick.tick.setAttribute("x2", xEU);
+  euTick.num.setAttribute("x", xEU);
+  euTick.num.textContent = `${Math.round(tEU * 100)}%`;
+  // EU sub-label fans left
+  euTick.sub.setAttribute("x", xEU - 4);
+  euTick.sub.setAttribute("text-anchor", "end");
+  euTick.sub.textContent = "EU RULE";
+
+  laTick.tick.setAttribute("x1", xLA);
+  laTick.tick.setAttribute("x2", xLA);
+  laTick.num.setAttribute("x", xLA);
+  laTick.num.textContent = `${Math.round(tLA * 100)}%`;
+  // LA sub-label fans right
+  laTick.sub.setAttribute("x", xLA + 4);
+  laTick.sub.setAttribute("text-anchor", "start");
+  laTick.sub.textContent = "LOSS-AVERSE";
+
+  // Hide ticks/labels if their threshold falls off the bar (a near 0).
+  const showEU = tEU < 0.99 && tEU > 0.01;
+  const showLA = tLA < 0.99 && tLA > 0.01;
+  euTick.tick.setAttribute("opacity", showEU ? 1 : 0);
+  euTick.num.setAttribute("opacity", showEU ? 1 : 0);
+  euTick.sub.setAttribute("opacity", showEU ? 1 : 0);
+  laTick.tick.setAttribute("opacity", showLA ? 1 : 0);
+  laTick.num.setAttribute("opacity", showLA ? 1 : 0);
+  laTick.sub.setAttribute("opacity", showLA ? 1 : 0);
+
+  // PRESS RED label centered under brick zone
+  redKey.t.setAttribute("x", (BAR_X0 + xEU) / 2);
+  redKey.s.setAttribute("x", (BAR_X0 + xEU) / 2);
+
+  // Slider readout — display as percentage to match the slider label.
+  const aPct = Math.round(a * 100);
+  aValue.textContent = `${aPct}%`;
+  eyebrow.textContent = `IF A STRANGER IS WORTH ${aPct}% OF YOU…`;
+
+  // Country verdict tags — which side of the loss-averse bar each sits on
+  for (const { country, dot, tag } of countryNodes) {
+    const above = country.trust >= tLA;
+    const between = country.trust >= tEU && country.trust < tLA;
+    if (above) {
+      tag.textContent = "PRESS BLUE";
+      tag.setAttribute("fill", "var(--rb-lavender)");
+      dot.setAttribute("fill", "var(--rb-lavender)");
+      dot.setAttribute("fill-opacity", 1);
+    } else if (between) {
+      tag.textContent = "DEPENDS";
+      tag.setAttribute("fill", "var(--rb-ochre)");
+      dot.setAttribute("fill", "var(--rb-ochre)");
+      dot.setAttribute("fill-opacity", 1);
+    } else {
+      tag.textContent = "";
+      dot.setAttribute("fill", "var(--rb-cream)");
+      dot.setAttribute("fill-opacity", 1);
+    }
+  }
+
+  // Verdict callout — phrased in the same plain language as the slider.
+  let v;
+  const denmarkAboveEU = 0.74 >= tEU;
+  const denmarkAboveLA = 0.74 >= tLA;
+  if (a < 0.1) {
+    v = `<strong>A stranger barely matters to you.</strong> The bar is essentially "trust everyone or press red." No real country gets close.`;
+  } else if (denmarkAboveLA) {
+    v = `<strong>With a stranger worth ${aPct}% of you, even loss aversion would have Denmark press blue.</strong> The most-trusting societies finally clear both bars.`;
+  } else if (denmarkAboveEU) {
+    v = `<strong>With a stranger worth ${aPct}% of you, Denmark clears the EU bar but not loss aversion.</strong> Whether a Dane presses blue depends on which rule they use.`;
+  } else {
+    v = `<strong>With a stranger worth ${aPct}% of you, the EU rule wants ${Math.round(tEU * 100)}% trust and loss aversion wants ${Math.round(tLA * 100)}%.</strong> No real society clears either bar.`;
+  }
+  verdict.innerHTML = v;
+}
+slider.addEventListener("input", (e) => update(parseFloat(e.target.value)));
+update(parseFloat(slider.value));
+</script>
+</body>
+</html>

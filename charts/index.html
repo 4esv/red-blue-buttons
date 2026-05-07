@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>charts — Red Button / Blue Button</title>
+<link rel="stylesheet" href="./shared.css">
+</head>
+<body>
+<main class="rb-chart" role="main">
+  <p class="back"><a href="https://aesv.io/feed/red-button-blue-button">read the article on aesv.io</a></p>
+  <h1>charts</h1>
+  <p class="lede">Standalone interactive figures for the article. Each one is a single HTML file plus the shared CSS / JS in this folder. They expect to be served (the heatmap fetches <code>data/empirics_grid.json</code>); see the repo README for the one-line server command.</p>
+
+  <div class="rb-panels two">
+    <a class="rb-panel" href="./logic.html" style="text-decoration:none;color:inherit;display:block;">
+      <p class="rb-panel-title">chart_logic</p>
+      <p style="margin:0;font-size:18px;font-weight:600;">The threshold</p>
+      <p style="margin:8px 0 0;color:var(--rb-ink-mute);font-size:14px;">Two threshold curves on (a, p). Slider for your altruism. Tells you what trust each decision rule needs you to have.</p>
+    </a>
+    <a class="rb-panel" href="./empirics.html" style="text-decoration:none;color:inherit;display:block;">
+      <p class="rb-panel-title">chart_empirics</p>
+      <p style="margin:0;font-size:18px;font-weight:600;">Where countries land</p>
+      <p style="margin:8px 0 0;color:var(--rb-ink-mute);font-size:14px;">Side-by-side P(blue wins) and survival heatmaps. Drag a marker, toggle the country layer, see the trap zone.</p>
+    </a>
+    <a class="rb-panel" href="./trap-zone.html" style="text-decoration:none;color:inherit;display:block;">
+      <p class="rb-panel-title">chart_trap_zone</p>
+      <p style="margin:0;font-size:18px;font-weight:600;">The trap zone</p>
+      <p style="margin:8px 0 0;color:var(--rb-ink-mute);font-size:14px;">Survival heatmap on the (a, p) plane with both threshold curves and a draggable crosshair.</p>
+    </a>
+    <a class="rb-panel" href="./universal.html" style="text-decoration:none;color:inherit;display:block;">
+      <p class="rb-panel-title">chart_universal</p>
+      <p style="margin:0;font-size:18px;font-weight:600;">Universal blue vs universal red</p>
+      <p style="margin:8px 0 0;color:var(--rb-ink-mute);font-size:14px;">Two-bar body-count comparison at a 5% misclick rate. The moral case for blue, made visible.</p>
+    </a>
+  </div>
+</main>
+</body>
+</html>

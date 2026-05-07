@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>chart_empirics — Where countries land</title>
+<link rel="stylesheet" href="./shared.css">
+</head>
+<body>
+<main class="rb-chart rb-chart-pair" role="main">
+  <p class="back"><a href="./">← all charts</a> · <a href="https://aesv.io/feed/red-button-blue-button">read the article</a></p>
+
+  <h1>Where the world lands</h1>
+  <p class="lede">Two views of the same simulation, painted on the world. At dictator-game altruism (a = 0.28), each coloured country gets the prediction that pairs with its World Values Survey trust score. The left map is intentions — who tries to press blue. The right map is outcomes — who survives. Together they make the trap zone visible.</p>
+
+  <div class="rb-panels two">
+    <div class="rb-panel">
+      <p class="rb-panel-title">% who'd press blue at a = 0.28</p>
+      <div class="rb-map" id="phase-map" aria-label="World map of share pressing blue"></div>
+      <div class="rb-scale" id="phase-scale"></div>
+    </div>
+    <div class="rb-panel">
+      <p class="rb-panel-title">% surviving at a = 0.28</p>
+      <div class="rb-map" id="survival-map" aria-label="World map of survival rate"></div>
+      <div class="rb-scale" id="survival-scale"></div>
+    </div>
+  </div>
+
+  <p style="margin:0;color:var(--rb-ink-mute);font-size:13px;line-height:1.55;">
+    The geographic clustering is the point: trust is a regional habit. Scandinavia, the Netherlands, and parts of East Asia tint lavender on the left — high-trust populations have the most blue voters. The same countries turn brick on the right because they're <strong style="color:var(--rb-ink);">in the trap zone</strong>: enough commit to blue to die for it, not enough to make it win. Latin America and most of the Anglosphere stay sage on the right because almost nobody intends blue.
+  </p>
+
+  <p style="margin:0;color:var(--rb-ink-mute);font-size:11px;letter-spacing:0.04em;">
+    Map base: <a href="https://github.com/flekschas/simple-world-map" style="color:inherit;">flekschas/simple-world-map</a>, CC BY-SA 3.0 (after Al MacDonald). Trust values from WVS Wave 7 — only countries with measured trust scores are shown.
+  </p>
+</main>
+
+<script type="module">
+import { lookupCell, colorBlueFraction, colorSurvival, fmtPct, fmt2 } from "./shared.js";
+
+const A_EXAMPLE = 0.28;
+
+// Inject the world map SVG into a host div, then return its <svg> root.
+async function loadMap(hostId) {
+  const host = document.getElementById(hostId);
+  const svgText = await fetch("./world-map.svg").then(r => r.text());
+  host.innerHTML = svgText;
+  const svg = host.querySelector("svg");
+  // Make it scale to its container.
+  svg.removeAttribute("width");
+  svg.removeAttribute("height");
+  svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+  svg.style.width = "100%";
+  svg.style.height = "auto";
+  svg.style.display = "block";
+  // Default colour: every country starts as the no-data fill, then we
+  // paint in the ones we have trust scores for.
+  // Default: every country invisible. We re-enable only the ones in
+  // countries.json — no-data countries would just be visual noise.
+  for (const path of svg.querySelectorAll("path")) {
+    path.setAttribute("fill", "none");
+    path.setAttribute("stroke", "none");
+  }
+  return svg;
+}
+
+function colourCountries(svg, countries, valueFn, colorFn) {
+  for (const c of countries) {
+    if (!c.iso2) continue;
+    // The flekschas map puts multi-region nations (e.g. France with overseas
+    // departments) inside a <g id="fr">. Single-piece countries are <path
+    // id="fr">. We try both.
+    const group = svg.getElementById(c.iso2);
+    if (!group) continue;
+    const value = valueFn(c);
+    const fill = colorFn(value);
+    const apply = (p) => {
+      p.setAttribute("fill", fill);
+      p.setAttribute("stroke", "var(--rb-ink)");
+      p.setAttribute("stroke-width", "0.6");
+    };
+    if (group.tagName === "g") {
+      group.querySelectorAll("path").forEach(apply);
+    } else {
+      apply(group);
+    }
+  }
+}
+
+function drawScaleStrip(hostId, label, stops) {
+  // stops = [{ frac: 0..1, color: 'rgb()', tick: '0%' }, ...]
+  const host = document.getElementById(hostId);
+  // Build a horizontal gradient bar with tick labels underneath.
+  const W = 360, H = 14;
+  const SVG_NS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(SVG_NS, "svg");
+  svg.setAttribute("viewBox", `0 0 ${W} 44`);
+  svg.style.width = "100%";
+  svg.style.maxWidth = "360px";
+  svg.style.height = "auto";
+
+  // Inline gradient (tiny strip of rects so we don't need <linearGradient>)
+  const N = 60;
+  for (let i = 0; i < N; i++) {
+    const t = i / (N - 1);
+    const r = document.createElementNS(SVG_NS, "rect");
+    r.setAttribute("x", (W * i) / N);
+    r.setAttribute("y", 12);
+    r.setAttribute("width", W / N + 0.5);
+    r.setAttribute("height", H);
+    r.setAttribute("fill", stops.colorFn(t));
+    svg.appendChild(r);
+  }
+  // Frame
+  const frame = document.createElementNS(SVG_NS, "rect");
+  frame.setAttribute("x", 0); frame.setAttribute("y", 12);
+  frame.setAttribute("width", W); frame.setAttribute("height", H);
+  frame.setAttribute("fill", "none");
+  frame.setAttribute("stroke", "var(--rb-ink)");
+  frame.setAttribute("stroke-width", "1.5");
+  svg.appendChild(frame);
+
+  // Label above
+  const top = document.createElementNS(SVG_NS, "text");
+  top.setAttribute("x", 0); top.setAttribute("y", 8);
+  top.setAttribute("font-size", "10");
+  top.setAttribute("font-weight", "700");
+  top.setAttribute("letter-spacing", "0.1em");
+  top.setAttribute("fill", "var(--rb-ink-mute)");
+  top.textContent = label;
+  svg.appendChild(top);
+
+  // Ticks below
+  for (const t of stops.ticks) {
+    const tx = t.frac * W;
+    const tick = document.createElementNS(SVG_NS, "line");
+    tick.setAttribute("x1", tx); tick.setAttribute("x2", tx);
+    tick.setAttribute("y1", 12 + H); tick.setAttribute("y2", 12 + H + 4);
+    tick.setAttribute("stroke", "var(--rb-ink)");
+    tick.setAttribute("stroke-width", "1");
+    svg.appendChild(tick);
+    const txt = document.createElementNS(SVG_NS, "text");
+    txt.setAttribute("x", tx);
+    txt.setAttribute("y", 42);
+    txt.setAttribute("text-anchor",
+      t.frac < 0.05 ? "start" : t.frac > 0.95 ? "end" : "middle");
+    txt.setAttribute("font-size", "11");
+    txt.setAttribute("font-family", "var(--rb-font-mono)");
+    txt.setAttribute("fill", "var(--rb-ink-mute)");
+    txt.textContent = t.label;
+    svg.appendChild(txt);
+  }
+  host.appendChild(svg);
+}
+
+(async function main() {
+  const [grid, countriesPkg, phaseSvg, survSvg] = await Promise.all([
+    fetch("../data/empirics_grid.json").then(r => r.json()),
+    fetch("../data/countries.json").then(r => r.json()),
+    loadMap("phase-map"),
+    loadMap("survival-map"),
+  ]);
+
+  // For each country, look up the predicted blue fraction and survival
+  // at the dictator-game altruism a = 0.28. NB: P(blue wins) is near 0
+  // for every country at this altruism, so we use blue_fraction as the
+  // intentions metric — it actually varies with trust.
+  const enriched = countriesPkg.countries.map(c => {
+    const cell = lookupCell(grid, A_EXAMPLE, c.trust);
+    return {
+      ...c,
+      blue_fraction: cell.blue_fraction,
+      survival: cell.survival,
+    };
+  });
+
+  colourCountries(phaseSvg, enriched, c => c.blue_fraction, colorBlueFraction);
+  colourCountries(survSvg,  enriched, c => c.survival,      colorSurvival);
+
+  drawScaleStrip("phase-scale", "% PRESSING BLUE", {
+    colorFn: colorBlueFraction,
+    // Visual stretch is 0..0.5; tick labels reflect that range.
+    ticks: [
+      { frac: 0,    label: "0%" },
+      { frac: 0.5,  label: "25%" },
+      { frac: 1,    label: "50%+" },
+    ],
+  });
+  drawScaleStrip("survival-scale", "% SURVIVING", {
+    colorFn: colorSurvival,
+    ticks: [
+      { frac: 0,    label: "0%" },
+      { frac: 0.5,  label: "50%" },
+      { frac: 0.75, label: "75%" },
+      { frac: 1,    label: "100%" },
+    ],
+  });
+})().catch(err => {
+  document.body.innerHTML += `<pre style="color:#a84a3c;padding:24px;white-space:pre-wrap">Failed to load data: ${err}\nServe the repo with: <code>python -m http.server</code></pre>`;
+});
+</script>
+</body>
+</html>
