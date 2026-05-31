@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 548" style="display:block;width:100%;height:auto" font-family="'Birdie', system-ui, sans-serif" role="img" aria-label="Per-country death toll. Each bar is one country; the blue share are the blue-pressers who die, the red share are the red-pressers who survive. Sorted by total deaths, fewest (Colombia) to most (the world total). Blue deaths are labelled to the left of each bar and red survivors to the right. No bar’s blue reaches the 50 percent line.">
+<rect x="152" y="10" width="11" height="11" fill="#6e6291"/>
+<text x="168" y="19" fill="#5c5650" font-size="11">die</text>
+<rect x="196" y="10" width="11" height="11" fill="#a84a3c"/>
+<text x="212" y="19" fill="#5c5650" font-size="11">survive</text>
+<line x1="310.0" y1="26" x2="310.0" y2="536" stroke="#bdb6a8" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="310.0" y="19" fill="#5c5650" font-size="11" text-anchor="middle">50%</text>
+<text x="10" y="44.5" font-size="14">🇨🇴</text>
+<text x="34" y="44.5" fill="#1a1a1a" font-size="12">Colombia</text>
+<text x="144" y="44.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">1.7k</text>
+<rect x="152" y="35.0" width="316" height="11" fill="#a84a3c"/>
+<text x="476" y="44.5" fill="#a84a3c" font-size="11" font-weight="bold">51M</text>
+<text x="10" y="65.5" font-size="14">🇧🇷</text>
+<text x="34" y="65.5" fill="#1a1a1a" font-size="12">Brazil</text>
+<text x="144" y="65.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">15k</text>
+<rect x="152" y="56.0" width="316" height="11" fill="#a84a3c"/>
+<text x="476" y="65.5" fill="#a84a3c" font-size="11" font-weight="bold">213M</text>
+<text x="10" y="86.5" font-size="14">🇹🇷</text>
+<text x="34" y="86.5" fill="#1a1a1a" font-size="12">Turkey</text>
+<text x="144" y="86.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">30k</text>
+<rect x="152" y="77.0" width="316" height="11" fill="#a84a3c"/>
+<text x="476" y="86.5" fill="#a84a3c" font-size="11" font-weight="bold">84M</text>
+<text x="10" y="107.5" font-size="14">🇲🇽</text>
+<text x="34" y="107.5" fill="#1a1a1a" font-size="12">Mexico</text>
+<text x="144" y="107.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">45k</text>
+<rect x="152" y="98.0" width="316" height="11" fill="#a84a3c"/>
+<text x="476" y="107.5" fill="#a84a3c" font-size="11" font-weight="bold">129M</text>
+<text x="10" y="128.5" font-size="14">🇦🇷</text>
+<text x="34" y="128.5" fill="#1a1a1a" font-size="12">Argentina</text>
+<text x="144" y="128.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">67k</text>
+<rect x="152" y="119.0" width="316" height="11" fill="#a84a3c"/>
+<text x="476" y="128.5" fill="#a84a3c" font-size="11" font-weight="bold">45M</text>
+<text x="10" y="149.5" font-size="14">🇪🇸</text>
+<text x="34" y="149.5" fill="#1a1a1a" font-size="12">Spain</text>
+<text x="144" y="149.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">227k</text>
+<rect x="152" y="140.0" width="316" height="11" fill="#a84a3c"/>
+<rect x="152" y="140.0" width="1.5" height="11" fill="#6e6291"/>
+<text x="476" y="149.5" fill="#a84a3c" font-size="11" font-weight="bold">47M</text>
+<text x="10" y="170.5" font-size="14">🇫🇷</text>
+<text x="34" y="170.5" fill="#1a1a1a" font-size="12">France</text>
+<text x="144" y="170.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">277k</text>
+<rect x="152" y="161.0" width="316" height="11" fill="#a84a3c"/>
+<rect x="152" y="161.0" width="1.3" height="11" fill="#6e6291"/>
+<text x="476" y="170.5" fill="#a84a3c" font-size="11" font-weight="bold">67M</text>
+<text x="10" y="191.5" font-size="14">🇷🇺</text>
+<text x="34" y="191.5" fill="#1a1a1a" font-size="12">Russia</text>
+<text x="144" y="191.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">430k</text>
+<rect x="152" y="182.0" width="316" height="11" fill="#a84a3c"/>
+<rect x="152" y="182.0" width="0.9" height="11" fill="#6e6291"/>
+<text x="476" y="191.5" fill="#a84a3c" font-size="11" font-weight="bold">144M</text>
+<text x="10" y="212.5" font-size="14">🇳🇿</text>
+<text x="34" y="212.5" fill="#1a1a1a" font-size="12">New Zealand</text>
+<text x="144" y="212.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">698k</text>
+<rect x="152" y="203.0" width="316" height="11" fill="#a84a3c"/>
+<rect x="152" y="203.0" width="43.3" height="11" fill="#6e6291"/>
+<text x="476" y="212.5" fill="#a84a3c" font-size="11" font-weight="bold">4.4M</text>
+<text x="10" y="233.5" font-size="14">🇫🇮</text>
+<text x="34" y="233.5" fill="#1a1a1a" font-size="12">Finland</text>
+<text x="144" y="233.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">815k</text>
+<rect x="152" y="224.0" width="316" height="11" fill="#a84a3c"/>
+<rect x="152" y="224.0" width="46.8" height="11" fill="#6e6291"/>
+<text x="476" y="233.5" fill="#a84a3c" font-size="11" font-weight="bold">4.7M</text>
+<text x="10" y="254.5" font-size="14">🇨🇦</text>
+<text x="34" y="254.5" fill="#1a1a1a" font-size="12">Canada</text>
+<text x="144" y="254.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">1.3M</text>
+<rect x="152" y="245.0" width="316" height="11" fill="#a84a3c"/>
+<rect x="152" y="245.0" width="10.6" height="11" fill="#6e6291"/>
+<text x="476" y="254.5" fill="#a84a3c" font-size="11" font-weight="bold">37M</text>
+<text x="10" y="275.5" font-size="14">🇨🇭</text>
+<text x="34" y="275.5" fill="#1a1a1a" font-size="12">Switzerland</text>
+<text x="144" y="275.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">1.4M</text>
+<rect x="152" y="266.0" width="316" height="11" fill="#a84a3c"/>
+<rect x="152" y="266.0" width="50.6" height="11" fill="#6e6291"/>
+<text x="476" y="275.5" fill="#a84a3c" font-size="11" font-weight="bold">7.2M</text>
+<text x="10" y="296.5" font-size="14">🇦🇺</text>
+<text x="34" y="296.5" fill="#1a1a1a" font-size="12">Australia</text>
+<text x="144" y="296.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">1.6M</text>
+<rect x="152" y="287.0" width="316" height="11" fill="#a84a3c"/>
+<rect x="152" y="287.0" width="19.6" height="11" fill="#6e6291"/>
+<text x="476" y="296.5" fill="#a84a3c" font-size="11" font-weight="bold">24M</text>
+<text x="10" y="317.5" font-size="14">🇳🇴</text>
+<text x="34" y="317.5" fill="#1a1a1a" font-size="12">Norway</text>
+<text x="144" y="317.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">2.0M</text>
+<rect x="152" y="308.0" width="316" height="11" fill="#a84a3c"/>
+<rect x="152" y="308.0" width="118.4" height="11" fill="#6e6291"/>
+<text x="476" y="317.5" fill="#a84a3c" font-size="11" font-weight="bold">3.4M</text>
+<text x="10" y="338.5" font-size="14">🇯🇵</text>
+<text x="34" y="338.5" fill="#1a1a1a" font-size="12">Japan</text>
+<text x="144" y="338.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">2.1M</text>
+<rect x="152" y="329.0" width="316" height="11" fill="#a84a3c"/>
+<rect x="152" y="329.0" width="5.3" height="11" fill="#6e6291"/>
+<text x="476" y="338.5" fill="#a84a3c" font-size="11" font-weight="bold">124M</text>
+<text x="10" y="359.5" font-size="14">🇸🇪</text>
+<text x="34" y="359.5" fill="#1a1a1a" font-size="12">Sweden</text>
+<text x="144" y="359.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">2.2M</text>
+<rect x="152" y="350.0" width="316" height="11" fill="#a84a3c"/>
+<rect x="152" y="350.0" width="67.6" height="11" fill="#6e6291"/>
+<text x="476" y="359.5" fill="#a84a3c" font-size="11" font-weight="bold">8.1M</text>
+<text x="10" y="380.5" font-size="14">🇩🇰</text>
+<text x="34" y="380.5" fill="#1a1a1a" font-size="12">Denmark</text>
+<text x="144" y="380.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">2.4M</text>
+<rect x="152" y="371.0" width="316" height="11" fill="#a84a3c"/>
+<rect x="152" y="371.0" width="131.9" height="11" fill="#6e6291"/>
+<text x="476" y="380.5" fill="#a84a3c" font-size="11" font-weight="bold">3.4M</text>
+<text x="10" y="401.5" font-size="14">🇩🇪</text>
+<text x="34" y="401.5" fill="#1a1a1a" font-size="12">Germany</text>
+<text x="144" y="401.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">2.8M</text>
+<rect x="152" y="392.0" width="316" height="11" fill="#a84a3c"/>
+<rect x="152" y="392.0" width="10.6" height="11" fill="#6e6291"/>
+<text x="476" y="401.5" fill="#a84a3c" font-size="11" font-weight="bold">80M</text>
+<text x="10" y="422.5" font-size="14">🇮🇳</text>
+<text x="34" y="422.5" fill="#1a1a1a" font-size="12">India</text>
+<text x="144" y="422.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">2.9M</text>
+<rect x="152" y="413.0" width="316" height="11" fill="#a84a3c"/>
+<rect x="152" y="413.0" width="0.7" height="11" fill="#6e6291"/>
+<text x="476" y="422.5" fill="#a84a3c" font-size="11" font-weight="bold">1.38B</text>
+<text x="10" y="443.5" font-size="14">🇬🇧</text>
+<text x="34" y="443.5" fill="#1a1a1a" font-size="12">UK</text>
+<text x="144" y="443.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">3.4M</text>
+<rect x="152" y="434.0" width="316" height="11" fill="#a84a3c"/>
+<rect x="152" y="434.0" width="16.1" height="11" fill="#6e6291"/>
+<text x="476" y="443.5" fill="#a84a3c" font-size="11" font-weight="bold">64M</text>
+<text x="10" y="464.5" font-size="14">🇳🇱</text>
+<text x="34" y="464.5" fill="#1a1a1a" font-size="12">Netherlands</text>
+<text x="144" y="464.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">4.6M</text>
+<rect x="152" y="455.0" width="316" height="11" fill="#a84a3c"/>
+<rect x="152" y="455.0" width="82.6" height="11" fill="#6e6291"/>
+<text x="476" y="464.5" fill="#a84a3c" font-size="11" font-weight="bold">13M</text>
+<text x="10" y="485.5" font-size="14">🇺🇸</text>
+<text x="34" y="485.5" fill="#1a1a1a" font-size="12">USA</text>
+<text x="144" y="485.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">6.2M</text>
+<rect x="152" y="476.0" width="316" height="11" fill="#a84a3c"/>
+<rect x="152" y="476.0" width="5.9" height="11" fill="#6e6291"/>
+<text x="476" y="485.5" fill="#a84a3c" font-size="11" font-weight="bold">325M</text>
+<text x="10" y="506.5" font-size="14">🇨🇳</text>
+<text x="34" y="506.5" fill="#1a1a1a" font-size="12">China</text>
+<text x="144" y="506.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">321M</text>
+<rect x="152" y="497.0" width="316" height="11" fill="#a84a3c"/>
+<rect x="152" y="497.0" width="72.4" height="11" fill="#6e6291"/>
+<text x="476" y="506.5" fill="#a84a3c" font-size="11" font-weight="bold">1.08B</text>
+<text x="10" y="527.5" font-size="14">🌍</text>
+<text x="34" y="527.5" fill="#1a1a1a" font-size="12">World</text>
+<text x="144" y="527.5" fill="#6e6291" font-size="11" font-weight="bold" text-anchor="end">359M</text>
+<rect x="152" y="518.0" width="316" height="11" fill="#a84a3c"/>
+<rect x="152" y="518.0" width="16.2" height="11" fill="#6e6291"/>
+<text x="476" y="527.5" fill="#a84a3c" font-size="11" font-weight="bold">6.63B</text>
+</svg>

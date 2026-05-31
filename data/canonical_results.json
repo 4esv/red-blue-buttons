@@ -1,0 +1,255 @@
+{
+  "params": {
+    "altruism": 0.28,
+    "concentration": 7.0,
+    "lambda": 1.0,
+    "misclick": 0.0
+  },
+  "global_blue_fraction": 0.05141530452856179,
+  "blue_wins": false,
+  "world_death_rate": 0.05141530452856179,
+  "critical_trust_uniform_world": 0.7763191959048642,
+  "world_critical_altruism": null,
+  "per_country": [
+    {
+      "name": "Denmark",
+      "code": "DNK",
+      "trust": 0.74,
+      "pop": 5800000,
+      "blue_fraction": 0.4173345558900593,
+      "deaths_in_global_game": 2420540,
+      "local_win": false,
+      "critical_altruism_self_save": 0.3423445767557859
+    },
+    {
+      "name": "Norway",
+      "code": "NOR",
+      "trust": 0.72,
+      "pop": 5400000,
+      "blue_fraction": 0.374693359817336,
+      "deaths_in_global_game": 2023344,
+      "local_win": false,
+      "critical_altruism_self_save": 0.3795322362947039
+    },
+    {
+      "name": "Netherlands",
+      "code": "NLD",
+      "trust": 0.66,
+      "pop": 17400000,
+      "blue_fraction": 0.26153022914994145,
+      "deaths_in_global_game": 4550626,
+      "local_win": false,
+      "critical_altruism_self_save": 0.5054794755889225
+    },
+    {
+      "name": "China",
+      "code": "CHN",
+      "trust": 0.64,
+      "pop": 1402000000,
+      "blue_fraction": 0.22912326919531617,
+      "deaths_in_global_game": 321230823,
+      "local_win": false,
+      "critical_altruism_self_save": 0.5530315881964598
+    },
+    {
+      "name": "Sweden",
+      "code": "SWE",
+      "trust": 0.63,
+      "pop": 10300000,
+      "blue_fraction": 0.21394335071462953,
+      "deaths_in_global_game": 2203617,
+      "local_win": false,
+      "critical_altruism_self_save": 0.5780066897134016
+    },
+    {
+      "name": "Switzerland",
+      "code": "CHE",
+      "trust": 0.59,
+      "pop": 8600000,
+      "blue_fraction": 0.15997962545832559,
+      "deaths_in_global_game": 1375825,
+      "local_win": false,
+      "critical_altruism_self_save": 0.6868900935419973
+    },
+    {
+      "name": "Finland",
+      "code": "FIN",
+      "trust": 0.58,
+      "pop": 5500000,
+      "blue_fraction": 0.14814008789785418,
+      "deaths_in_global_game": 814770,
+      "local_win": false,
+      "critical_altruism_self_save": 0.7165998175397171
+    },
+    {
+      "name": "New Zealand",
+      "code": "NZL",
+      "trust": 0.57,
+      "pop": 5100000,
+      "blue_fraction": 0.1369390607302585,
+      "deaths_in_global_game": 698389,
+      "local_win": false,
+      "critical_altruism_self_save": 0.7474150988662381
+    },
+    {
+      "name": "Australia",
+      "code": "AUS",
+      "trust": 0.48,
+      "pop": 25700000,
+      "blue_fraction": 0.062140277272812794,
+      "deaths_in_global_game": 1597005,
+      "local_win": false,
+      "critical_altruism_self_save": null
+    },
+    {
+      "name": "UK",
+      "code": "GBR",
+      "trust": 0.46,
+      "pop": 67200000,
+      "blue_fraction": 0.05102038389595199,
+      "deaths_in_global_game": 3428570,
+      "local_win": false,
+      "critical_altruism_self_save": null
+    },
+    {
+      "name": "Germany",
+      "code": "DEU",
+      "trust": 0.42,
+      "pop": 83200000,
+      "blue_fraction": 0.03351530956536549,
+      "deaths_in_global_game": 2788474,
+      "local_win": false,
+      "critical_altruism_self_save": null
+    },
+    {
+      "name": "Canada",
+      "code": "CAN",
+      "trust": 0.42,
+      "pop": 38000000,
+      "blue_fraction": 0.03351530956536549,
+      "deaths_in_global_game": 1273582,
+      "local_win": false,
+      "critical_altruism_self_save": null
+    },
+    {
+      "name": "USA",
+      "code": "USA",
+      "trust": 0.37,
+      "pop": 331000000,
+      "blue_fraction": 0.018802720892209523,
+      "deaths_in_global_game": 6223701,
+      "local_win": false,
+      "critical_altruism_self_save": null
+    },
+    {
+      "name": "Japan",
+      "code": "JPN",
+      "trust": 0.36,
+      "pop": 125800000,
+      "blue_fraction": 0.016622680580243805,
+      "deaths_in_global_game": 2091133,
+      "local_win": false,
+      "critical_altruism_self_save": null
+    },
+    {
+      "name": "India",
+      "code": "IND",
+      "trust": 0.22,
+      "pop": 1380000000,
+      "blue_fraction": 0.0021245785926605554,
+      "deaths_in_global_game": 2931918,
+      "local_win": false,
+      "critical_altruism_self_save": null
+    },
+    {
+      "name": "Spain",
+      "code": "ESP",
+      "trust": 0.27,
+      "pop": 47300000,
+      "blue_fraction": 0.0047996788118972785,
+      "deaths_in_global_game": 227025,
+      "local_win": false,
+      "critical_altruism_self_save": null
+    },
+    {
+      "name": "France",
+      "code": "FRA",
+      "trust": 0.26,
+      "pop": 67400000,
+      "blue_fraction": 0.004111152174841312,
+      "deaths_in_global_game": 277092,
+      "local_win": false,
+      "critical_altruism_self_save": null
+    },
+    {
+      "name": "Russia",
+      "code": "RUS",
+      "trust": 0.24,
+      "pop": 144100000,
+      "blue_fraction": 0.002980775036274837,
+      "deaths_in_global_game": 429530,
+      "local_win": false,
+      "critical_altruism_self_save": null
+    },
+    {
+      "name": "Argentina",
+      "code": "ARG",
+      "trust": 0.2,
+      "pop": 45400000,
+      "blue_fraction": 0.0014858157849127539,
+      "deaths_in_global_game": 67456,
+      "local_win": false,
+      "critical_altruism_self_save": null
+    },
+    {
+      "name": "Mexico",
+      "code": "MEX",
+      "trust": 0.13,
+      "pop": 128900000,
+      "blue_fraction": 0.0003507570066716856,
+      "deaths_in_global_game": 45213,
+      "local_win": false,
+      "critical_altruism_self_save": null
+    },
+    {
+      "name": "Turkey",
+      "code": "TUR",
+      "trust": 0.13,
+      "pop": 84300000,
+      "blue_fraction": 0.0003507570066716856,
+      "deaths_in_global_game": 29569,
+      "local_win": false,
+      "critical_altruism_self_save": null
+    },
+    {
+      "name": "Brazil",
+      "code": "BRA",
+      "trust": 0.07,
+      "pop": 212600000,
+      "blue_fraction": 6.874317559769413e-05,
+      "deaths_in_global_game": 14615,
+      "local_win": false,
+      "critical_altruism_self_save": null
+    },
+    {
+      "name": "Colombia",
+      "code": "COL",
+      "trust": 0.05,
+      "pop": 50900000,
+      "blue_fraction": 3.3789518553135596e-05,
+      "deaths_in_global_game": 1720,
+      "local_win": false,
+      "critical_altruism_self_save": null
+    },
+    {
+      "name": "Rest of world",
+      "code": null,
+      "trust": 0.18,
+      "pop": 2700000000,
+      "blue_fraction": 0.0010170858467188583,
+      "deaths_in_global_game": 2746132,
+      "local_win": false,
+      "critical_altruism_self_save": null
+    }
+  ]
+}

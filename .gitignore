@@ -15,5 +15,8 @@ package-lock.json
 .idea/
 .vscode/
 
+# Local agent config
+.claude/
+
 # Local server logs
 *.log
