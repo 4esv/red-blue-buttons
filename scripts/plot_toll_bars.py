@@ -1,6 +1,6 @@
 """Per-country death-toll bars. Each bar is one country (full width = its whole
 population), split into the share that DIES (blue / lavender, the blue-pressers)
-and the share that SURVIVES (red / brick, the red-pressers) — the same colors as
+and the share that SURVIVES (red / brick, the red-pressers), the same colors as
 the button pictograms. Sorted by death rate, least to most, with the absolute
 death toll labelled in blue at the end of each bar.
 

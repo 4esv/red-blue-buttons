@@ -4,9 +4,9 @@
 
 The model's inputs: one row per surveyed nation, plus a `rest_of_world` bucket for everyone not individually surveyed. Each row carries trust, altruism, and population, and the `_meta` block documents every source and caveat.
 
-- **trust** — share answering "most people can be trusted" (World Values Survey Wave 7, 2017–2022, Q57). Denmark comes from the European Values Study 2017, merged into the same series. Values are approximate: WVS percentages move 1–3 points between releases, and China's 64% is unusually high and contested.
-- **altruism** — fixed at 0.28 for every country, the global dictator-game mean (Engel 2011), used as a generous ceiling.
-- **population** — UN World Population Prospects 2022.
+- **trust**: share answering "most people can be trusted" (World Values Survey Wave 7, 2017-2022, Q57). Denmark comes from the European Values Study 2017, merged into the same series. Values are approximate: WVS percentages move 1 to 3 points between releases, and China's 64% is unusually high and contested.
+- **altruism**: fixed at 0.28 for every country, the global dictator-game mean (Engel 2011), used as a generous ceiling.
+- **population**: UN World Population Prospects 2022.
 
 The qualitative findings (blue never wins, deaths rise with trust, low-trust countries are safer) are robust to a few points on any one country. The world death rate is not: it leans heavily on China's contested figure, which the essay says out loud.
 

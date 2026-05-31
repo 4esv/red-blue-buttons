@@ -146,7 +146,7 @@ def build_svg():
             f'{flag(c["iso2"])}</text>'
         )
 
-    # World: the population-weighted aggregate. It sits ABOVE the curve —
+    # World: the population-weighted aggregate. It sits ABOVE the curve:
     # mixing trust levels kills more than the average trust alone would, since
     # the high-trust tail still presses blue. 🌍 marks the real (trust, rate).
     tot = sum(e["population"] for e in entries)
