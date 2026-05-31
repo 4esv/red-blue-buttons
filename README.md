@@ -1,55 +1,40 @@
 # red button / blue button
 
-A population-scale simulation behind the essay **[Which button?](https://aesv.io/etc/which-button)**.
+Simulation behind the essay **[Which button?](https://aesv.io/etc/which-button)**.
 
-> Everyone in the world privately presses a red or blue button. If more than half press blue, everyone lives. Otherwise only the people who pressed red live.
+Everyone privately presses red or blue. If more than half of everyone presses blue, everyone lives; otherwise only the red-pressers live.
 
-Red is the safe button: you live either way. Blue saves everyone if it clears a majority and kills you if it doesn't. The essay argues about what people *would* do; this repo estimates it from real national data and keeps the numbers reproducible.
+## Results
 
-## The model
+| metric | value |
+|---|---|
+| world death rate | **5.1%** |
+| does blue ever win | **no** — not in any country, not in the world |
+| highest | Denmark, **42%** |
+| lowest | Colombia, **~1,700** people |
+| China share of world toll | **89%** |
+| world death rate without China | **0.7%** (below the US) |
+| confirmed at | **6,991,900,000** agents (matches the closed form to 0.0004 pp) |
 
-Each agent has a **trust** `p` (its belief that others will press blue, drawn around its nation's social-trust level) and an **altruism** `a` (the weight it puts on a stranger's life). It presses blue iff
+Rule: press blue iff `trust × (1 + altruism) ≥ 1`. Altruism `a = 0.28`, Beta concentration 7, no misclick. Global: blue wins iff `>50%` of everyone presses blue.
 
-```
-trust × (1 + altruism) ≥ 1
-```
+## Figures
 
-the risk-neutral expected-value rule, equivalently when trust clears the threshold `1 / (1 + a)`. Traits are Beta-distributed around each nation's mean (concentration 7); altruism is fixed at `a = 0.28`, the dictator-game mean (Engel 2011) used as a generous ceiling. There is no misclick, no communication, no coordination.
+![Death rate vs trust](figures/death-curve.svg)
 
-The rule is **global**: blue wins only if more than half of *everyone* presses it. With no noise the per-country blue (= death) fraction is a closed form, evaluated by quadrature and confirmed by a Monte-Carlo run at the real world population (~7 billion agents); the two agree to 0.0004 percentage points.
+![Per-country death toll](figures/toll-bars.svg)
 
-## What it finds
-
-- **Blue never wins** — not in any surveyed country, not in the world. The global blue fraction is about 5%, against the 50% it needs.
-- **Deaths climb with trust.** The more a country trusts, the more of it presses blue and dies when blue loses. Denmark, the most trusting nation measured, loses about 42%; the least trusting lose a rounding error.
-- **The world figure is China-dominated.** At China's (contested) 64% trust, China alone is about 89% of the global toll; take China out and the world death rate falls below the US.
-
-Full write-up, with the figures: **https://aesv.io/etc/which-button**
-
-## Reproduce
+## Run
 
 ```bash
 pip install -r requirements.txt
-
-python -m scripts.model              # exact results + sensitivity -> data/canonical_results.json
-python -m scripts.model --confirm    # also the ~7e9-agent Monte-Carlo confirmation (slow)
+python -m scripts.model              # results -> data/canonical_results.json
+python -m scripts.model --confirm    # ~7e9-agent confirmation (slow)
 python -m scripts.plot_death_curve   # -> figures/death-curve.svg
 python -m scripts.plot_toll_bars     # -> figures/toll-bars.svg
-python -m unittest tests.test_model  # pin the published numbers
-```
-
-## Layout
-
-```
-scripts/model.py             the model: decision rule, exact blue_fraction, global world game
-scripts/plot_death_curve.py  death-rate-vs-trust curve (transparent SVG, page colors)
-scripts/plot_toll_bars.py    per-country death toll, blue deaths vs red survivors
-data/countries.json          inputs: per-nation trust, altruism, population, with sources
-data/canonical_results.json  the outputs the essay cites
-figures/                     the generated charts
-tests/                       pin the published numbers against the model
+python -m unittest tests.test_model
 ```
 
 ## Data
 
-`data/countries.json` carries every input with its source in the `_meta` block: trust from the World Values Survey Wave 7 (Denmark from the European Values Study 2017, merged into the same series), altruism from Engel's 2011 dictator-game meta-analysis, populations from UN World Population Prospects 2022. Trust values are approximate (WVS percentages move 1–3 points between releases) and China's 64% is contested; the essay treats both as such.
+`data/countries.json` — trust (WVS Wave 7 / EVS 2017), altruism (Engel 2011), population (UN 2022); sources in `_meta`. China's 64% trust is contested and the world figure leans on it.
