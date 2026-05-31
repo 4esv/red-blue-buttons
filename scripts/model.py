@@ -173,7 +173,7 @@ if __name__ == "__main__":
     base = world(entries)
 
     print("=" * 74)
-    print("RED / BLUE BUTTON  —  population model (exact quadrature)")
+    print("RED / BLUE BUTTON: population model (exact quadrature)")
     print(f"  altruism={ALTRUISM}, concentration={CONCENTRATION}, lambda={LAMBDA}")
     print("=" * 74)
     print(f"\ntotal population:     {base['total_pop']:,.0f}")
