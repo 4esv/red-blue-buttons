@@ -4,6 +4,15 @@ Simulation behind the essay **[Which button?](https://aesv.io/feed/which-button)
 
 Everyone privately presses red or blue. If more than half of everyone presses blue, everyone lives; otherwise only the red-pressers live.
 
+## Kaggle
+
+The essay + model live on Kaggle as a runnable notebook and dataset:
+
+- notebook: [kaggle.com/code/axelst/which-button](https://www.kaggle.com/code/axelst/which-button)
+- dataset: [kaggle.com/datasets/axelst/which-button-world-trust](https://www.kaggle.com/datasets/axelst/which-button-world-trust)
+
+`python -m scripts.export_kaggle` regenerates `kaggle/dataset/`; push with `kaggle datasets version -p kaggle/dataset -m "<msg>"` and `kaggle kernels push -p kaggle/notebook`.
+
 ## Run
 
 ```bash

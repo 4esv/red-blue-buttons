@@ -1,0 +1,25 @@
+code,iso2,name,trust,altruism,population
+DNK,dk,Denmark,0.74,0.28,5800000
+NOR,no,Norway,0.72,0.28,5400000
+NLD,nl,Netherlands,0.66,0.28,17400000
+CHN,cn,China,0.64,0.28,1402000000
+SWE,se,Sweden,0.63,0.28,10300000
+CHE,ch,Switzerland,0.59,0.28,8600000
+FIN,fi,Finland,0.58,0.28,5500000
+NZL,nz,New Zealand,0.57,0.28,5100000
+AUS,au,Australia,0.48,0.28,25700000
+GBR,gb,UK,0.46,0.28,67200000
+DEU,de,Germany,0.42,0.28,83200000
+CAN,ca,Canada,0.42,0.28,38000000
+USA,us,USA,0.37,0.28,331000000
+JPN,jp,Japan,0.36,0.28,125800000
+IND,in,India,0.22,0.28,1380000000
+ESP,es,Spain,0.27,0.28,47300000
+FRA,fr,France,0.26,0.28,67400000
+RUS,ru,Russia,0.24,0.28,144100000
+ARG,ar,Argentina,0.2,0.28,45400000
+MEX,mx,Mexico,0.13,0.28,128900000
+TUR,tr,Turkey,0.13,0.28,84300000
+BRA,br,Brazil,0.07,0.28,212600000
+COL,co,Colombia,0.05,0.28,50900000
+,,Rest of world,0.18,0.28,2700000000

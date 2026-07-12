@@ -1,0 +1,56 @@
+{
+  "_meta": {
+    "trust_source": "World Values Survey Wave 7 (2017–2022), Q57: 'Generally speaking, would you say that most people can be trusted, or that you need to be very careful in dealing with people?' Values are the % answering 'Most people can be trusted' rounded to nearest percent.",
+    "trust_caveats": [
+      "WVS Wave 7 percentages move 1–3 points between releases as the dataset is curated. Numbers here are approximate and intended for illustration; verify against the latest WVS release before citing.",
+      "China's reported trust (~64%) is unusually high relative to other authoritarian states and is contested in the literature; it may reflect in-group framing of 'most people' rather than true generalised trust."
+    ],
+    "altruism_source": "Engel 2011 meta-analysis of dictator-game studies, mean transfer ~28% across populations.",
+    "altruism_caveats": [
+      "Country-specific dictator-game means exist but are noisy and don't all use comparable protocols. We use the global mean (0.28) for every country here because that's the number the article uses, and because cross-country dictator-game variation is small relative to the trust spread.",
+      "Dictator-game altruism is a weak proxy for 'willingness to die for a stranger' — it measures money-sharing, not lives. The article treats 0.28 as an upper bound."
+    ],
+    "population_source": "UN World Population Prospects 2022 (rounded to nearest 100k). Used for population-weighted world simulation.",
+    "rest_of_world_note": "The 'rest of world' entry covers ~2.7B people in countries not individually surveyed in WVS Wave 7. Trust estimate (0.18) is a rough average of available regional data and should be treated as a lower bound.",
+    "schema": {
+      "code": "ISO 3166-1 alpha-3",
+      "iso2": "ISO 3166-1 alpha-2 lowercase (matches path id in charts/world-map.svg)",
+      "name": "Display name",
+      "trust": "p — share of respondents who say most people can be trusted (0..1)",
+      "altruism": "a — assumed altruism weight (0..1)",
+      "population": "Approximate 2022 population (UN estimates)"
+    }
+  },
+  "countries": [
+    {"code": "DNK", "iso2": "dk", "name": "Denmark",     "trust": 0.74, "altruism": 0.28, "population":     5800000},
+    {"code": "NOR", "iso2": "no", "name": "Norway",      "trust": 0.72, "altruism": 0.28, "population":     5400000},
+    {"code": "NLD", "iso2": "nl", "name": "Netherlands", "trust": 0.66, "altruism": 0.28, "population":    17400000},
+    {"code": "CHN", "iso2": "cn", "name": "China",       "trust": 0.64, "altruism": 0.28, "population":  1402000000},
+    {"code": "SWE", "iso2": "se", "name": "Sweden",      "trust": 0.63, "altruism": 0.28, "population":    10300000},
+    {"code": "CHE", "iso2": "ch", "name": "Switzerland", "trust": 0.59, "altruism": 0.28, "population":     8600000},
+    {"code": "FIN", "iso2": "fi", "name": "Finland",     "trust": 0.58, "altruism": 0.28, "population":     5500000},
+    {"code": "NZL", "iso2": "nz", "name": "New Zealand", "trust": 0.57, "altruism": 0.28, "population":     5100000},
+    {"code": "AUS", "iso2": "au", "name": "Australia",   "trust": 0.48, "altruism": 0.28, "population":    25700000},
+    {"code": "GBR", "iso2": "gb", "name": "UK",          "trust": 0.46, "altruism": 0.28, "population":    67200000},
+    {"code": "DEU", "iso2": "de", "name": "Germany",     "trust": 0.42, "altruism": 0.28, "population":    83200000},
+    {"code": "CAN", "iso2": "ca", "name": "Canada",      "trust": 0.42, "altruism": 0.28, "population":    38000000},
+    {"code": "USA", "iso2": "us", "name": "USA",         "trust": 0.37, "altruism": 0.28, "population":   331000000},
+    {"code": "JPN", "iso2": "jp", "name": "Japan",       "trust": 0.36, "altruism": 0.28, "population":   125800000},
+    {"code": "IND", "iso2": "in", "name": "India",       "trust": 0.22, "altruism": 0.28, "population":  1380000000},
+    {"code": "ESP", "iso2": "es", "name": "Spain",       "trust": 0.27, "altruism": 0.28, "population":    47300000},
+    {"code": "FRA", "iso2": "fr", "name": "France",      "trust": 0.26, "altruism": 0.28, "population":    67400000},
+    {"code": "RUS", "iso2": "ru", "name": "Russia",      "trust": 0.24, "altruism": 0.28, "population":   144100000},
+    {"code": "ARG", "iso2": "ar", "name": "Argentina",   "trust": 0.20, "altruism": 0.28, "population":    45400000},
+    {"code": "MEX", "iso2": "mx", "name": "Mexico",      "trust": 0.13, "altruism": 0.28, "population":   128900000},
+    {"code": "TUR", "iso2": "tr", "name": "Turkey",      "trust": 0.13, "altruism": 0.28, "population":    84300000},
+    {"code": "BRA", "iso2": "br", "name": "Brazil",      "trust": 0.07, "altruism": 0.28, "population":   212600000},
+    {"code": "COL", "iso2": "co", "name": "Colombia",    "trust": 0.05, "altruism": 0.28, "population":    50900000}
+  ],
+  "rest_of_world": {
+    "name": "Rest of world",
+    "trust": 0.18,
+    "altruism": 0.28,
+    "population": 2700000000,
+    "note": "Rough estimate for countries not individually listed. Trust is a conservative estimate from available regional WVS data."
+  }
+}

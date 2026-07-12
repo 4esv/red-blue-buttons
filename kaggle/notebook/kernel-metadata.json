@@ -1,0 +1,13 @@
+{
+  "id": "axelst/which-button",
+  "title": "Which button?",
+  "code_file": "which-button.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "false",
+  "enable_gpu": "false",
+  "enable_internet": "false",
+  "dataset_sources": ["axelst/which-button-world-trust"],
+  "competition_sources": [],
+  "kernel_sources": []
+}
