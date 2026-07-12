@@ -1,6 +1,6 @@
 # red button / blue button
 
-Simulation behind the essay **[Which button?](https://aesv.io/feed/which-button)**.
+Simulation behind the essay **[Which button?](https://www.kaggle.com/code/axelst/which-button)**.
 
 Everyone privately presses red or blue. If more than half of everyone presses blue, everyone lives; otherwise only the red-pressers live.
 
