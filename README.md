@@ -46,4 +46,4 @@ Rule: press blue iff `trust × (1 + altruism) ≥ 1`. Altruism `a = 0.28`, Beta 
 
 ## Data
 
-`data/countries.json`: trust (WVS Wave 7 / EVS 2017), altruism (Engel 2011), population (UN 2022); sources in `_meta`. China's 64% trust is contested and the world figure leans on it.
+`data/countries.json`: trust (WVS Wave 7 / EVS 2017), altruism (Engel 2011), population (UN 2022); sources in `_meta`. China's 64% trust is contested, and the world figure leans on that number.
